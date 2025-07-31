@@ -31,26 +31,32 @@ List<String> names = [
 ];
 List<String> editions = ['Series 7', 'Series 4', 'All Series', 'Pro Series'];
 
+List<int> prices = [5000, 6000, 8000, 2300];
+
 List<Item> items = [
   Item(
     name: 'Mulberry Clutch',
     image: 'assets/images/bag1.jpg',
     edition: 'Series 7',
+    price: 5000,
   ),
   Item(
     name: 'Gucci Black',
     image: 'assets/images/bag2.jpg',
     edition: 'Series 4',
+    price: 6000,
   ),
   Item(
     name: 'Van Heusen',
     image: 'assets/images/bag3.jpg',
     edition: 'All Series',
+    price: 8000,
   ),
   Item(
     name: 'Kate Spade',
     image: 'assets/images/Series 7.png',
     edition: 'Pro Series',
+    price: 2300,
   ),
 ];
 

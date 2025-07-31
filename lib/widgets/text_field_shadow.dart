@@ -5,17 +5,20 @@ class Textfield extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final BorderRadius? borderRadius;
+  final double? width;
   const Textfield({
     super.key,
     required this.hint,
     this.prefixIcon,
     this.suffixIcon,
     this.borderRadius,
+    this.width = double.infinity,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: borderRadius ?? BorderRadius.circular(12),

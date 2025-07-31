@@ -13,6 +13,7 @@ class ItemCard extends StatelessWidget {
     this.editionfontsize,
     this.radius,
     this.pricedistance = 17,
+    required this.price,
   });
   final String image;
   final String itemName;
@@ -24,6 +25,7 @@ class ItemCard extends StatelessWidget {
   final double? editionfontsize;
   final double? radius;
   final double? pricedistance;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class ItemCard extends StatelessWidget {
             Text(edition, style: TextStyle(fontSize: editionfontsize)),
             SizedBox(height: pricedistance),
             Text(
-              'N5,000',
+              'N$price',
               style: TextStyle(
                 fontSize: pricefontsize,
                 fontWeight: FontWeight.w900,

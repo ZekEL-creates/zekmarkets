@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketstreetapp/components/item_card.dart';
+import 'package:marketstreetapp/items/lists.dart';
 import 'package:marketstreetapp/pages/product_details.dart';
 
 class GridViewBuilder extends StatelessWidget {
@@ -43,6 +44,7 @@ class GridViewBuilder extends StatelessWidget {
             image: images[index],
             itemName: itemName[index],
             edition: itemEdition[index],
+            price: prices[index],
           ),
         );
       }),

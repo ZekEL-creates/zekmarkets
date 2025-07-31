@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketstreetapp/components/functionalities/add_to_cart.dart';
 import 'package:marketstreetapp/components/item_card.dart';
 import 'package:marketstreetapp/components/tab_bar_builder.dart';
 import 'package:marketstreetapp/items/lists.dart';
@@ -20,6 +21,7 @@ class _ProductDetailsState extends State<ProductDetails>
   late String image;
   late String itemName;
   late String edition;
+  late int price;
   late TabController _tabController;
   @override
   void initState() {
@@ -28,11 +30,13 @@ class _ProductDetailsState extends State<ProductDetails>
     itemName = names[index];
     image = itemImage[index];
     edition = editions[index];
+    price = prices[index];
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
   List<Widget> tab = [Tab(child: Text('Details')), Tab(child: Text('Reviews'))];
+  Color color = Colors.grey;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +65,10 @@ class _ProductDetailsState extends State<ProductDetails>
                 SizedBox(
                   height: 260,
                   width: double.infinity,
-                  child: Image(image: AssetImage(image), fit: BoxFit.cover),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image(image: AssetImage(image), fit: BoxFit.cover),
+                  ),
                 ),
                 SizedBox(height: 15),
                 Row(
@@ -96,7 +103,7 @@ class _ProductDetailsState extends State<ProductDetails>
                             ),
                             SizedBox(width: 5),
                             Text(
-                              "N5000",
+                              "N$price",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w800,
@@ -134,7 +141,22 @@ class _ProductDetailsState extends State<ProductDetails>
                       width: MediaQuery.of(context).size.width / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [Icon(Icons.favorite, color: Colors.grey)],
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              if (color == Colors.grey) {
+                                setState(() {
+                                  color = Colors.black;
+                                });
+                              } else {
+                                setState(() {
+                                  color = Colors.grey;
+                                });
+                              }
+                            },
+                            child: Icon(Icons.favorite, color: color),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -211,6 +233,7 @@ class _ProductDetailsState extends State<ProductDetails>
                             image: image,
                             itemName: itemName,
                             edition: edition,
+                            price: price,
                             height: 50,
                             width: 60,
                             fontsize: 9,
@@ -247,12 +270,7 @@ class _ProductDetailsState extends State<ProductDetails>
                           ),
                           Button(
                             onPressed: () {
-                              for (var item in items) {
-                                if (item.itemName == itemName) {
-                                  cart.add(item);
-                                  print(item.itemName);
-                                }
-                              }
+                              addToCart(itemName);
                             },
                             identifier: "Buy",
                             width: 150,

@@ -3,6 +3,7 @@ import 'package:marketstreetapp/colors/colors.dart';
 import 'package:marketstreetapp/components/grid_view_builder.dart';
 import 'package:marketstreetapp/components/tab_bar_builder.dart';
 import 'package:marketstreetapp/items/lists.dart';
+import 'package:marketstreetapp/pages/cart_page.dart';
 import 'package:marketstreetapp/widgets/button.dart';
 import 'package:marketstreetapp/widgets/header_text.dart';
 import 'package:marketstreetapp/widgets/text_field_shadow.dart';
@@ -82,10 +83,21 @@ class _HomePageState extends State<HomePage>
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(3.0),
-                      child: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                        size: 18,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return CartPage();
+                              },
+                            ),
+                          );
+                        },
+                        child: Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                          size: 18,
+                        ),
                       ),
                     ),
                   ),
