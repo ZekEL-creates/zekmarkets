@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketstreetapp/components/cart_item_display.dart';
 import 'package:marketstreetapp/components/functionalities/add_to_cart.dart';
 import 'package:marketstreetapp/items/lists.dart';
+import 'package:marketstreetapp/pages/checkout_page.dart';
 import 'package:marketstreetapp/widgets/button.dart';
 import 'package:marketstreetapp/widgets/text_field_shadow.dart';
 
@@ -65,7 +66,15 @@ class _CartPageState extends State<CartPage> {
                         children: [
                           Textfield(hint: 'Coupon code', width: 150),
                           Button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return CheckoutPage();
+                                  },
+                                ),
+                              );
+                            },
                             identifier: 'Checkout',
                             width: 150,
                           ),

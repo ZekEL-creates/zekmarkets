@@ -24,3 +24,27 @@ void removeFromCart(itemname) {
     }
   }
 }
+
+void addToFavorites(itemname) {
+  Item favoriteItem;
+  for (var item in items) {
+    if (item.itemName == itemname) {
+      favoriteItem = item;
+      if (!favorites.contains(favoriteItem)) {
+        favorites.add(item);
+      }
+    }
+  }
+}
+
+void removeFromFavorites(itemname) {
+  Item favoriteItem;
+  for (var item in items) {
+    if (item.itemName == itemname) {
+      favoriteItem = item;
+      if (favorites.contains(favoriteItem)) {
+        favorites.remove(favoriteItem);
+      }
+    }
+  }
+}

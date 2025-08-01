@@ -18,7 +18,7 @@ class TabBarBuilder extends StatelessWidget {
         borderSide: BorderSide(width: 2, color: Appcolors.bluegradientLight),
         insets: EdgeInsets.only(right: 20.0),
       ),
-      unselectedLabelColor: Colors.black.withOpacity(0.3),
+      unselectedLabelColor: Appcolors.text2,
       controller: controller,
       tabs: tab,
     );

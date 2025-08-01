@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketstreetapp/colors/colors.dart';
+import 'package:marketstreetapp/components/item_display.dart';
 
 class CartItemDisplay extends StatefulWidget {
   const CartItemDisplay({
@@ -26,108 +27,54 @@ class _CartItemDisplayState extends State<CartItemDisplay> {
   int amount = 1;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Container(
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.only(bottom: 13),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.08),
-              blurRadius: 15,
-              spreadRadius: 0.5,
-              offset: Offset(0, 1),
-            ),
-          ],
+    return ItemDisplay(
+      image: widget.image,
+      height: widget.height,
+      itemName: widget.itemName,
+      edition: widget.itemEdition,
+      price: widget.price,
+      children: [
+        IconButton(
+          onPressed: widget.onDelete,
+          icon: Icon(Icons.delete, color: Colors.red),
         ),
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image(
-                    image: AssetImage(widget.image),
-                    height: widget.height,
-                  ),
-                ),
-                SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.itemName,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(widget.itemEdition),
-                    SizedBox(height: 10),
-                    Text(
-                      "N${widget.price}",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  if (amount != 0) {
+                    amount--;
+                  }
+                });
+              },
+              icon: Icon(Icons.remove),
+              padding: EdgeInsets.zero,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: widget.onDelete,
-                  icon: Icon(Icons.delete, color: Colors.red),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (amount != 0) {
-                            amount--;
-                          }
-                        });
-                      },
-                      icon: Icon(Icons.remove),
-                      padding: EdgeInsets.zero,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(7),
-                      decoration: BoxDecoration(
-                        color: Appcolors.bluegradientLight,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        "$amount",
-                        style: TextStyle(fontWeight: FontWeight.w800),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          amount++;
-                        });
-                      },
-                      icon: Icon(Icons.add),
-                      padding: EdgeInsets.zero,
-                    ),
-                  ],
-                ),
-              ],
+            Container(
+              padding: EdgeInsets.all(7),
+              decoration: BoxDecoration(
+                color: Appcolors.bluegradientLight,
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                "$amount",
+                style: TextStyle(fontWeight: FontWeight.w800),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  amount++;
+                });
+              },
+              icon: Icon(Icons.add),
+              padding: EdgeInsets.zero,
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

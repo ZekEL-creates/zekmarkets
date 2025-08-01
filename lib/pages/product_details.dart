@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marketstreetapp/colors/colors.dart';
 import 'package:marketstreetapp/components/functionalities/add_to_cart.dart';
 import 'package:marketstreetapp/components/item_card.dart';
 import 'package:marketstreetapp/components/tab_bar_builder.dart';
@@ -86,7 +87,7 @@ class _ProductDetailsState extends State<ProductDetails>
                         ),
                         Text(
                           "(With solo loop)",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Appcolors.text2),
                         ),
                       ],
                     ),
@@ -117,7 +118,7 @@ class _ProductDetailsState extends State<ProductDetails>
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Appcolors.text2,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
@@ -145,10 +146,13 @@ class _ProductDetailsState extends State<ProductDetails>
                           GestureDetector(
                             onTap: () {
                               if (color == Colors.grey) {
+                                addToFavorites(itemName);
+
                                 setState(() {
                                   color = Colors.black;
                                 });
                               } else {
+                                removeFromFavorites(itemName);
                                 setState(() {
                                   color = Colors.grey;
                                 });
@@ -168,11 +172,11 @@ class _ProductDetailsState extends State<ProductDetails>
                     children: [
                       Text(
                         "Call it a treasure chest or a mini portable \nworld. Handbags are indispensable in \ndaily life.",
-                        style: TextStyle(fontSize: 17, color: Colors.grey),
+                        style: TextStyle(fontSize: 17, color: Appcolors.text2),
                       ),
                       Text(
                         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum nobis dolorem",
-                        style: TextStyle(fontSize: 17, color: Colors.grey),
+                        style: TextStyle(fontSize: 17, color: Appcolors.text2),
                       ),
                     ],
                   ),
@@ -248,30 +252,43 @@ class _ProductDetailsState extends State<ProductDetails>
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: 46,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              border: BoxBorder.fromBorderSide(
-                                BorderSide(color: Colors.grey),
+                          GestureDetector(
+                            onTap: () {
+                              addToCart(itemName);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text('Done'),
+                                    content: Text("Item added successfully"),
+                                    actions: [],
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              height: 46,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                border: BoxBorder.fromBorderSide(
+                                  BorderSide(color: Appcolors.text2),
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Add to Cart',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w800,
+                              child: Center(
+                                child: Text(
+                                  'Add to Cart',
+                                  style: TextStyle(
+                                    color: Appcolors.text2,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           Button(
-                            onPressed: () {
-                              addToCart(itemName);
-                            },
+                            onPressed: () {},
                             identifier: "Buy",
                             width: 150,
                             fontSize: 20,
@@ -285,9 +302,9 @@ class _ProductDetailsState extends State<ProductDetails>
                           "DropShip",
                           style: TextStyle(
                             decoration: TextDecoration.underline,
-                            decorationColor: Colors.grey,
+                            decorationColor: Appcolors.text2,
                             fontWeight: FontWeight.w800,
-                            color: Colors.grey,
+                            color: Appcolors.text2,
                           ),
                         ),
                       ),

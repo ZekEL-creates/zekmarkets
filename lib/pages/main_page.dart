@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketstreetapp/colors/colors.dart';
 import 'package:marketstreetapp/components/navigation_menu_icon.dart';
 import 'package:marketstreetapp/pages/cart_page.dart';
+import 'package:marketstreetapp/pages/favorite_page.dart';
 import 'package:marketstreetapp/pages/home_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class MainPage extends StatefulWidget {
 List pages = [
   HomePage(),
   CartPage(),
-  Center(child: Text('Favorite')),
+  FavoritePage(),
   Center(child: Text('User')),
 ];
 

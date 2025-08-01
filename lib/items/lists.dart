@@ -61,3 +61,4 @@ List<Item> items = [
 ];
 
 List<Item> cart = [];
+List<Item> favorites = [];
